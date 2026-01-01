@@ -1,0 +1,399 @@
+/* =========================================================
+   GLOBAL RESET & VARIABLES
+========================================================= */
+
+:root {
+  --color-black: #0b0b0b;
+  --color-dark: #111111;
+  --color-gray-dark: #1a1a1a;
+  --color-gray: #2a2a2a;
+  --color-light-gray: #b5b5b5;
+  --color-white: #ffffff;
+  --color-accent: #c9a96a;
+
+  --font-primary: "Inter", "Segoe UI", Arial, sans-serif;
+  --font-secondary: "Georgia", serif;
+
+  --transition-fast: 0.2s ease;
+  --transition-medium: 0.4s ease;
+  --transition-slow: 0.8s ease;
+
+  --radius-small: 6px;
+  --radius-medium: 12px;
+  --radius-large: 24px;
+
+  --shadow-soft: 0 10px 30px rgba(0,0,0,0.4);
+  --shadow-heavy: 0 30px 80px rgba(0,0,0,0.6);
+}
+
+/* =========================================================
+   RESET
+========================================================= */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-primary);
+  background: linear-gradient(180deg, #050505, #0b0b0b);
+  color: var(--color-light-gray);
+  line-height: 1.8;
+  overflow-x: hidden;
+}
+
+/* =========================================================
+   TYPOGRAPHY
+========================================================= */
+
+h1, h2, h3, h4 {
+  color: var(--color-white);
+  font-weight: 600;
+  letter-spacing: 0.5px;
+}
+
+h1 {
+  font-size: clamp(2.5rem, 5vw, 4rem);
+}
+
+h2 {
+  font-size: clamp(2rem, 4vw, 3rem);
+  margin-bottom: 30px;
+}
+
+h3 {
+  font-size: 1.4rem;
+  margin-bottom: 15px;
+}
+
+p {
+  font-size: 1rem;
+  max-width: 720px;
+}
+
+a {
+  color: var(--color-white);
+  text-decoration: none;
+  position: relative;
+  transition: var(--transition-fast);
+}
+
+a:hover {
+  color: var(--color-accent);
+}
+
+/* =========================================================
+   GLOBAL SECTION STYLE
+========================================================= */
+
+section {
+  padding: 120px 10%;
+  position: relative;
+}
+
+section::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  bottom: 0;
+  width: 80%;
+  height: 1px;
+  background: linear-gradient(to right, transparent, #333, transparent);
+  transform: translateX(-50%);
+}
+
+/* =========================================================
+   HEADER / NAVBAR
+========================================================= */
+
+header {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  background: rgba(10,10,10,0.85);
+  backdrop-filter: blur(12px);
+  z-index: 1000;
+  box-shadow: var(--shadow-soft);
+}
+
+nav {
+  max-width: 1400px;
+  margin: auto;
+  padding: 20px 10%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+nav h1 {
+  font-size: 1.4rem;
+  letter-spacing: 2px;
+}
+
+nav ul {
+  display: flex;
+  gap: 40px;
+  list-style: none;
+}
+
+nav ul li a::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -6px;
+  width: 0;
+  height: 2px;
+  background: var(--color-accent);
+  transition: width var(--transition-medium);
+}
+
+nav ul li a:hover::after {
+  width: 100%;
+}
+
+/* =========================================================
+   HERO SECTION
+========================================================= */
+
+#hero {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  background: radial-gradient(circle at top, #151515, #050505);
+}
+
+#hero h2 {
+  animation: fadeSlideUp 1.2s ease forwards;
+}
+
+#hero p {
+  margin-top: 20px;
+  opacity: 0;
+  animation: fadeSlideUp 1.2s ease forwards;
+  animation-delay: 0.3s;
+}
+
+/* =========================================================
+   ABOUT SECTION
+========================================================= */
+
+#about article {
+  opacity: 0;
+  transform: translateY(40px);
+  animation: fadeInSection 1s ease forwards;
+}
+
+#about p {
+  margin-bottom: 20px;
+}
+
+/* =========================================================
+   SKILLS SECTION
+========================================================= */
+
+#skills section {
+  margin-top: 40px;
+  background: var(--color-gray-dark);
+  padding: 30px;
+  border-radius: var(--radius-medium);
+  transition: var(--transition-medium);
+}
+
+#skills section:hover {
+  transform: translateY(-6px);
+  box-shadow: var(--shadow-soft);
+}
+
+#skills ul {
+  list-style: none;
+}
+
+#skills li {
+  padding: 8px 0;
+  position: relative;
+  padding-left: 20px;
+}
+
+#skills li::before {
+  content: "▹";
+  position: absolute;
+  left: 0;
+  color: var(--color-accent);
+}
+
+/* =========================================================
+   EXPERIENCE SECTION
+========================================================= */
+
+#experience article {
+  margin-bottom: 50px;
+  padding-left: 20px;
+  border-left: 2px solid #222;
+  transition: var(--transition-medium);
+}
+
+#experience article:hover {
+  border-left-color: var(--color-accent);
+}
+
+#experience ul {
+  margin-top: 10px;
+  list-style: square;
+  padding-left: 20px;
+}
+
+/* =========================================================
+   PROJECTS SECTION
+========================================================= */
+
+#projects article {
+  background: linear-gradient(135deg, #151515, #0b0b0b);
+  padding: 40px;
+  border-radius: var(--radius-large);
+  margin-bottom: 40px;
+  transition: var(--transition-medium);
+  position: relative;
+  overflow: hidden;
+}
+
+#projects article::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(120deg, transparent, rgba(255,255,255,0.04), transparent);
+  transform: translateX(-100%);
+  transition: var(--transition-slow);
+}
+
+#projects article:hover::before {
+  transform: translateX(100%);
+}
+
+#projects article:hover {
+  transform: translateY(-8px);
+  box-shadow: var(--shadow-heavy);
+}
+
+/* =========================================================
+   CONTACT SECTION
+========================================================= */
+
+#contact address {
+  font-style: normal;
+  background: var(--color-gray-dark);
+  padding: 40px;
+  border-radius: var(--radius-medium);
+  box-shadow: var(--shadow-soft);
+}
+
+#contact p {
+  margin-bottom: 10px;
+}
+
+/* =========================================================
+   FOOTER
+========================================================= */
+
+footer {
+  padding: 60px 10%;
+  text-align: center;
+  background: #050505;
+  font-size: 0.9rem;
+  color: #777;
+}
+
+/* =========================================================
+   ANIMATIONS
+========================================================= */
+
+@keyframes fadeSlideUp {
+  from {
+    opacity: 0;
+    transform: translateY(40px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeInSection {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* =========================================================
+   MICRO INTERACTIONS
+========================================================= */
+
+button {
+  background: transparent;
+  border: 1px solid var(--color-accent);
+  padding: 12px 24px;
+  color: var(--color-white);
+  border-radius: var(--radius-small);
+  cursor: pointer;
+  transition: var(--transition-medium);
+}
+
+button:hover {
+  background: var(--color-accent);
+  color: var(--color-black);
+  transform: scale(1.05);
+}
+
+/* =========================================================
+   RESPONSIVE DESIGN
+========================================================= */
+
+@media (max-width: 1024px) {
+  nav ul {
+    gap: 20px;
+  }
+
+  section {
+    padding: 100px 8%;
+  }
+}
+
+@media (max-width: 768px) {
+  nav {
+    flex-direction: column;
+    gap: 15px;
+  }
+
+  nav ul {
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  section {
+    padding: 80px 6%;
+  }
+}
+
+@media (max-width: 480px) {
+  h1 {
+    font-size: 2.2rem;
+  }
+
+  h2 {
+    font-size: 1.8rem;
+  }
+
+  section {
+    padding: 60px 5%;
+  }
+  }
